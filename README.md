@@ -3,6 +3,8 @@
 Este repositorio contiene el desarrollo de una **aplicación web full stack** realizada como prueba técnica para **Matipos**.  
 La solución implementa un **CRUD de personas**, separando claramente el frontend y el backend, siguiendo buenas prácticas de arquitectura, validación y organización del código.
 
+Video Explicacion de la prueba: https://www.youtube.com/watch?v=1fhB0YSiKqM
+
 ---
 
 ## 📁 Estructura del proyecto
