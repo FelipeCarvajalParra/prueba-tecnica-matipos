@@ -19,7 +19,7 @@ export default function Documentation() {
         <div className="w-full max-w-2xl aspect-video">
           <iframe
             className="w-full h-full rounded-lg shadow"
-            src="https://www.youtube.com/embed/P4ElHrHqWe4?si=1VdLJRxdKh37SkEo"
+            src="https://www.youtube.com/embed/1fhB0YSiKqM?si=SJOVBbIPe980vCrv"
             title="Video explicativo del proyecto"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
