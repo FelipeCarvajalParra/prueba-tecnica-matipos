@@ -1,0 +1,369 @@
+{
+	"info": {
+		"_postman_id": "person-api-collection",
+		"name": "Person API",
+		"description": "Collection for Person API endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Persons",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/person",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"person"
+					]
+				},
+				"description": "Get all persons from the system"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Person By ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/person/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"person",
+						"1"
+					]
+				},
+				"description": "Get a person by their ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Person By ID - Not Found",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/person/999",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"person",
+						"999"
+					]
+				},
+				"description": "Get a person by ID that doesn't exist (should return 404)"
+			},
+			"response": []
+		},
+		{
+			"name": "Search Persons By Name",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/person/search?name=John",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"person",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "John"
+						}
+					]
+				},
+				"description": "Search persons by name"
+			},
+			"response": []
+		},
+		{
+			"name": "Search Persons By Name - Not Found",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/person/search?name=NonExistent",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"person",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "NonExistent"
+						}
+					]
+				},
+				"description": "Search persons by name that doesn't exist (should return 404)"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Person",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"document\": \"12345678\",\n    \"age\": 30\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/person",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"person"
+					]
+				},
+				"description": "Create a new person"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Person - Invalid Email",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Test\",\n    \"lastName\": \"User\",\n    \"email\": \"invalid-email\",\n    \"document\": \"99999999\",\n    \"age\": 20\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/person",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"person"
+					]
+				},
+				"description": "Create person with invalid email (should return 400 validation error)"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Person - Duplicate Email",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Another\",\n    \"lastName\": \"Person\",\n    \"email\": \"john.doe@example.com\",\n    \"document\": \"87654321\",\n    \"age\": 25\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/person",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"person"
+					]
+				},
+				"description": "Create person with duplicate email (should return 409 conflict)"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Person",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"name\": \"John Updated\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"document\": \"12345678\",\n    \"age\": 31\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/person",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"person"
+					]
+				},
+				"description": "Update an existing person"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Person - Not Found",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 999,\n    \"name\": \"Test\",\n    \"lastName\": \"Test\",\n    \"email\": \"test@test.com\",\n    \"document\": \"99999999\",\n    \"age\": 25\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/person",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"person"
+					]
+				},
+				"description": "Update a person that doesn't exist (should return 404)"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Person",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/person/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"person",
+						"1"
+					]
+				},
+				"description": "Delete a person by ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Person - Not Found",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/person/999",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"person",
+						"999"
+					]
+				},
+				"description": "Delete a person that doesn't exist (should return 404)"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:5261",
+			"type": "string"
+		}
+	]
+}
+
